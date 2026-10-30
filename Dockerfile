@@ -19,4 +19,9 @@ COPY --from=build /app/scripts ./scripts
 COPY --from=build /app/dist ./dist
 RUN mkdir -p /app/data
 EXPOSE 4000
+
+# Health check: verifies both the API process is responsive and the frontend bundle is served.
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD node -e "fetch('http://127.0.0.1:' + (process.env.PORT || 4000) + '/healthz').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
+
 CMD ["node", "server/index.js"]

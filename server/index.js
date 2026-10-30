@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'node:path';
+import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { createAuthRouter } from './routes/auth.js';
 
@@ -9,6 +10,17 @@ const PORT = process.env.PORT || 4000;
 
 app.disable('x-powered-by');
 app.use(express.json());
+
+// Lightweight health check for Docker/orchestrator probes.
+// Covers both the API (this process) and the frontend bundle (dist/index.html exists).
+app.get('/healthz', (req, res) => {
+  const dist = path.resolve(__dirname, '../dist');
+  const indexExists = fs.existsSync(path.join(dist, 'index.html'));
+  if (!indexExists) {
+    return res.status(503).json({ status: 'error', frontend: 'missing' });
+  }
+  res.status(200).json({ status: 'ok', api: 'up', frontend: 'up' });
+});
 
 app.use('/api/auth', createAuthRouter());
 

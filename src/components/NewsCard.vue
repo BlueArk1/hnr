@@ -1,7 +1,7 @@
 <template>
-  <div class="flex items-center gap-1 sm:gap-3">
+  <div class="flex items-center gap-3 sm:gap-4">
     <!-- Rank to the left of the post item card: compact on mobile, large on desktop -->
-    <span class="text-m2-on-surface-disabled text-xs sm:text-lg font-bold w-4 sm:w-8 shrink-0 text-right tabular-nums select-none">
+    <span class="text-m2-on-surface-disabled text-sm sm:text-lg font-bold w-5 sm:w-8 shrink-0 text-right tabular-nums select-none">
       {{ rank }}
     </span>
 
