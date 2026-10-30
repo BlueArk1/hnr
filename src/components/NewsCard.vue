@@ -1,12 +1,12 @@
 <template>
-  <div class="flex items-center gap-2.5 sm:gap-3">
+  <div class="flex items-center gap-1 sm:gap-3">
     <!-- Rank to the left of the post item card: compact on mobile, large on desktop -->
-    <span class="text-m2-on-surface-disabled text-sm sm:text-lg font-bold w-6 sm:w-8 shrink-0 text-right tabular-nums select-none">
+    <span class="text-m2-on-surface-disabled text-xs sm:text-lg font-bold w-4 sm:w-8 shrink-0 text-right tabular-nums select-none">
       {{ rank }}
     </span>
 
     <article
-      class="bg-m2-surface rounded-lg p-3.5 sm:p-4 cursor-pointer flex-1 min-w-0 hover:bg-m2-surface-2/60 transition-colors border border-m2-surface-2/40"
+      class="bg-m2-surface rounded-lg p-3 sm:p-4 cursor-pointer flex-1 min-w-0 hover:bg-m2-surface-2/60 transition-colors border border-m2-surface-2/40"
       @click="goToItem"
     >
       <h2 class="text-m2-on-surface font-medium leading-snug text-sm sm:text-base">{{ item.title }}</h2>

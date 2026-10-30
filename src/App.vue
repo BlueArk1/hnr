@@ -12,18 +12,20 @@
 
         <nav
           v-if="auth.isAuthenticated"
-          class="flex-1 min-w-0 flex items-center justify-between sm:justify-center p-0.5 sm:p-1 rounded-full border border-m2-surface-2 bg-m2-surface text-[11px] sm:text-sm"
+          class="min-w-0 flex items-center justify-center gap-0.5 p-0.5 sm:p-1 rounded-full border border-m2-surface-2 bg-m2-surface text-[11px] sm:text-sm overflow-x-auto no-scrollbar"
         >
           <RouterLink
             v-for="f in feeds"
             :key="f"
             :to="`/${f}`"
-            class="flex-1 sm:flex-initial sm:px-5 px-1 py-1.5 sm:py-2 rounded-full whitespace-nowrap font-medium transition-colors text-center"
+            class="px-2.5 sm:px-5 py-1.5 sm:py-2 rounded-full whitespace-nowrap font-medium transition-colors text-center shrink-0"
             :class="isActive(f) ? 'bg-m2-surface-2 text-m2-on-surface shadow-sm' : 'text-m2-on-surface-med hover:text-m2-on-surface hover:bg-m2-surface-2/40'"
           >
             {{ labels[f] }}
           </RouterLink>
         </nav>
+
+        <div class="flex-1"></div>
 
         <div v-if="auth.isAuthenticated" class="shrink-0 relative" ref="menuRoot">
           <button
@@ -73,7 +75,7 @@
       </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-4 py-6">
+    <main class="max-w-4xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
       <router-view />
     </main>
   </div>
