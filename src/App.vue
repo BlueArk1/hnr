@@ -1,9 +1,9 @@
 <template>
   <div class="min-h-screen bg-m2-bg text-m2-on-bg">
     <header class="sticky top-0 z-20 bg-m2-bg/95 backdrop-blur border-b border-m2-surface-2">
-      <div class="max-w-4xl mx-auto px-4 h-14 flex items-center gap-4">
+      <div class="max-w-4xl mx-auto px-3 sm:px-4 h-14 flex items-center gap-2 sm:gap-3">
         <button
-          class="font-bold text-m2-primary text-lg shrink-0 hover:opacity-80 transition-opacity cursor-pointer"
+          class="font-bold text-m2-primary text-lg shrink-0 hover:opacity-80 transition-opacity cursor-pointer px-1 py-1"
           title="Go to Top stories"
           @click="goHome"
         >
@@ -12,22 +12,22 @@
 
         <nav
           v-if="auth.isAuthenticated"
-          class="flex items-center gap-1.5 p-1 rounded-full border border-m2-surface-2 bg-m2-surface text-sm overflow-x-auto"
+          class="flex-1 min-w-0 flex items-center justify-between sm:justify-center p-1 rounded-full border border-m2-surface-2 bg-m2-surface text-xs sm:text-sm"
         >
           <RouterLink
             v-for="f in feeds"
             :key="f"
             :to="`/${f}`"
-            class="px-5 py-2 rounded-full whitespace-nowrap font-medium transition-colors text-center min-w-[72px]"
-            :class="isActive(f) ? 'bg-m2-surface-2 text-m2-on-surface' : 'text-m2-on-surface-med hover:text-m2-on-surface hover:bg-m2-surface-2/40'"
+            class="flex-1 sm:flex-initial sm:px-5 py-1.5 sm:py-2 rounded-full whitespace-nowrap font-medium transition-colors text-center"
+            :class="isActive(f) ? 'bg-m2-surface-2 text-m2-on-surface shadow-sm' : 'text-m2-on-surface-med hover:text-m2-on-surface hover:bg-m2-surface-2/40'"
           >
             {{ labels[f] }}
           </RouterLink>
         </nav>
 
-        <div v-if="auth.isAuthenticated" class="ml-auto relative" ref="menuRoot">
+        <div v-if="auth.isAuthenticated" class="shrink-0 relative" ref="menuRoot">
           <button
-            class="w-9 h-9 rounded-full bg-m2-surface-2 text-m2-on-surface font-semibold flex items-center justify-center hover:ring-2 hover:ring-m2-primary/40 transition"
+            class="w-9 h-9 rounded-full bg-m2-surface-2 text-m2-on-surface font-semibold flex items-center justify-center hover:ring-2 hover:ring-m2-primary/40 transition cursor-pointer"
             :aria-expanded="menuOpen"
             aria-haspopup="menu"
             :aria-label="`Account menu for ${auth.user?.username}`"
