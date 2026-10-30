@@ -2,8 +2,10 @@ services:
   hnr:
     image: ghcr.io/blueark1/hnr:latest
     container_name: hnr
+    # Bind to localhost ONLY — not exposed to the internet.
+    # Access via a reverse proxy (Caddy/nginx/Traefik) or SSH tunnel.
     ports:
-      - '4000:4000'
+      - '127.0.0.1:4000:4000'
     environment:
       - JWT_SECRET=${JWT_SECRET:-change-me-in-production}
       - JWT_EXPIRES=7d
