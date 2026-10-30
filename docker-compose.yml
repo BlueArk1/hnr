@@ -1,0 +1,15 @@
+services:
+  hnr:
+    image: ghcr.io/blueark1/hnr:latest
+    container_name: hnr
+    ports:
+      - '4000:4000'
+    environment:
+      - JWT_SECRET=${JWT_SECRET:-change-me-in-production}
+      - JWT_EXPIRES=7d
+    volumes:
+      - hnr-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  hnr-data:
